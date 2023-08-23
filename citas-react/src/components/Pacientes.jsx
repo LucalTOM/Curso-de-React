@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 
-const Pacientes = ({ paciente, setpaciente }) => {
-  const { nombre, propietario, email, fecha, sintomas } = paciente;
-  useEffect(() => {
-    console.log("el componente esta listo");
-  });
+const Pacientes = ({ paciente, setpaciente, eliminarPaciente }) => {
+  const { nombre, propietario, email, fecha, sintomas, id } = paciente;
+
+  const handleEliminar = () => {
+    const respuesta = confirm("deseas eliminar este paciente?");
+    if (respuesta) {
+      eliminarPaciente(id);
+    }
+  };
 
   return (
     <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl">
@@ -42,6 +46,7 @@ const Pacientes = ({ paciente, setpaciente }) => {
         <button
           type="button"
           className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
+          onClick={handleEliminar}
         >
           Eliminar
         </button>
